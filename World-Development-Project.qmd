@@ -1,0 +1,79 @@
+---
+title: "World-Development-Project"
+author: "Max Jiang"
+date: "2024-10-07"
+bibliography: references.bib
+format: 
+  pdf: default
+  html: default
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+wdi <- read_csv('/Users/maxjiang/Desktop/QTM350/wdi.csv')
+head(wdi)
+```
+
+```{r}
+# Select three indicators for analysis
+indicators <- wdi %>%
+  select(gdp_per_capita = `gdp_per_capita`, 
+         life_expectancy = `life_expectancy`, 
+         total_population = `total_population`)
+summary(indicators)
+```
+
+Exploratory Data Analysis: We are analyzing three key indicators: GDP per capita, life expectancy, and total population. Below are the summary statistics for these indicators:
+
+```{r}
+summary(indicators)
+```
+
+The summary statistics for GDP per capita, life expectancy, and total population reveal significant disparities among countries. GDP per capita shows a wide range, from 259 to 240,862, with a median of 7,588, indicating a right-skewed distribution where a few countries have exceptionally high GDP per capita. This is evident as the mean (20,346) is significantly higher than the median. Life expectancy also varies considerably, ranging from 53 to 85 years, with a median of 73.51, which is slightly higher than the mean (72.42), indicating a relatively symmetric distribution but slightly left-skewed. The total population displays the most extreme variation, ranging from just over 11,000 to 1.417 billion, with a median of 6.46 million. This distribution is heavily skewed due to a few highly populous countries, as the mean population (36.54 million) is much higher than the median. Additionally, missing values for GDP per capita (14) and life expectancy (8) indicate incomplete data for some countries, which should be addressed in further analysis. Overall, the statistics reflect significant socioeconomic differences across the dataset, with notable outliers in wealth and population.
+
+```{r}
+#| label: fig-gdp-density
+#| fig-cap: "Density Plot of GDP Per Capita from the World Development Indicators dataset"
+#| echo: false
+# Density plot for GDP per capita
+ggplot(indicators, aes(x = gdp_per_capita)) +
+  geom_density(fill = "blue", alpha = 0.7) +
+  labs(title = "Density Plot of GDP Per Capita", x = "GDP Per Capita", y = "Density") +
+  theme_minimal()
+```
+
+```{r}
+#| label: fig-life-expectancy
+#| fig-cap: "Scatter Plot of Life Expectancy vs GDP Per Capita from the World Development Indicators dataset"
+#| echo: false
+# Scatter plot for life expectancy vs GDP per capita
+ggplot(indicators, aes(x = gdp_per_capita, y = life_expectancy)) +
+  geom_point(color='purple') +
+  labs(title = "Life Expectancy vs GDP Per Capita", x = "GDP Per Capita", y = "Life Expectancy") +
+  theme_minimal()
+
+```
+
+## Summary Table of Key Indicators
+
+```{r}
+#| label: table-key-indicators
+knitr::kable(summary(indicators), caption = "Summary of Key Indicators")
+```
+
+|    Indicator     | Minimum Value | Maximum Value |  Mean   | Median  |
+|:----------------:|:-------------:|:-------------:|:-------:|:-------:|
+|  GDP Per Capita  |      259      |    240,862    | 20,346  |  7,588  |
+| Life Expectancy  |     53.00     |     85.38     |  72.42  |  73.51  |
+| Total Population |    11,310     |   1.417e+09   | 36.54e6 | 6.465e6 |
+
+: Summary statistics for GDP per capita, Life Expectancy, and Total Population
+
+## Cross-References
+
+As shown in **Figure @fig-gdp-density**, the distribution of GDP per capita across countries is highly skewed. Additionally, **Figure @fig-life-expectancy** demonstrates the relationship between life expectancy and GDP per capita, indicating a possible positive correlation between the two.
+
+The key statistics for the selected indicators, including GDP per capita, life expectancy, and total population, are summarized in **Table @table-key-indicators**.
+
+The data used in this analysis comes from the World Bank Development Indicators dataset [@worldbank]. Additionally, the analysis techniques applied here are informed by concepts discussed in *Data Science for Business* by Provost and Fawcett [@datascience].

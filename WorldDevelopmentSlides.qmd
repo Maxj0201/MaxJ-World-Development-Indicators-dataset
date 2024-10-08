@@ -1,0 +1,50 @@
+---
+title: "WorldDevelopmentSlides"
+author: "Max Jiang"
+date: "2024-10-07"
+format: revealjs
+  theme: night  
+  transition: slide  
+editor: visual
+---
+
+## 
+
+# Introduction to World Development Indicators
+
+We will explore key socioeconomic indicators such as GDP per capita, life expectancy, and total population.
+
+## 
+
+# Summary of Key Findings
+
+-   GDP per capita varies significantly across countries.
+-   Life expectancy is positively correlated with GDP per capita.
+
+## 
+
+# Density Plot of GDP Per Capita
+
+```{r}
+#| echo: false
+#| fig-cap: "Density Plot of GDP Per Capita"
+ggplot(indicators, aes(x = gdp_per_capita)) +
+  geom_density(fill = "lightblue", alpha = 0.7) +
+  labs(title = "Density Plot of GDP Per Capita", x = "GDP Per Capita", y = "Density") +
+  theme_minimal()
+```
+
+# Scatter Plot: Life Expectancy vs GDP Per Capita
+
+```{r}
+#| echo: false
+#| fig-cap: "Scatter Plot of Life Expectancy vs GDP Per Capita"
+ggplot(indicators, aes(x = gdp_per_capita, y = life_expectancy)) +
+  geom_point(color='purple') +
+  labs(title = "Life Expectancy vs GDP Per Capita", x = "GDP Per Capita", y = "Life Expectancy") +
+  theme_minimal()
+```
+
+# Conclusion
+
+Our analysis highlights disparities in GDP per capita and life expectancy across different countries.
