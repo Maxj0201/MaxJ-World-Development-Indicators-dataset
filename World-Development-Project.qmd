@@ -35,7 +35,8 @@ The summary statistics for GDP per capita, life expectancy, and total population
 ```{r}
 #| label: fig-gdp-density
 #| fig-cap: "Density Plot of GDP Per Capita from the World Development Indicators dataset"
-#| echo: false
+#| echo: true
+#| code-fold: true
 # Density plot for GDP per capita
 ggplot(indicators, aes(x = gdp_per_capita)) +
   geom_density(fill = "blue", alpha = 0.7) +
@@ -46,7 +47,8 @@ ggplot(indicators, aes(x = gdp_per_capita)) +
 ```{r}
 #| label: fig-life-expectancy
 #| fig-cap: "Scatter Plot of Life Expectancy vs GDP Per Capita from the World Development Indicators dataset"
-#| echo: false
+#| echo: true
+#| code-fold: true
 # Scatter plot for life expectancy vs GDP per capita
 ggplot(indicators, aes(x = gdp_per_capita, y = life_expectancy)) +
   geom_point(color='purple') +
@@ -58,22 +60,15 @@ ggplot(indicators, aes(x = gdp_per_capita, y = life_expectancy)) +
 ## Summary Table of Key Indicators
 
 ```{r}
-#| label: table-key-indicators
+#| label: tbl-key-indicators
 knitr::kable(summary(indicators), caption = "Summary of Key Indicators")
 ```
 
-|    Indicator     | Minimum Value | Maximum Value |  Mean   | Median  |
-|:----------------:|:-------------:|:-------------:|:-------:|:-------:|
-|  GDP Per Capita  |      259      |    240,862    | 20,346  |  7,588  |
-| Life Expectancy  |     53.00     |     85.38     |  72.42  |  73.51  |
-| Total Population |    11,310     |   1.417e+09   | 36.54e6 | 6.465e6 |
-
-: Summary statistics for GDP per capita, Life Expectancy, and Total Population
-
 ## Cross-References
 
-As shown in **Figure @fig-gdp-density**, the distribution of GDP per capita across countries is highly skewed. Additionally, **Figure @fig-life-expectancy** demonstrates the relationship between life expectancy and GDP per capita, indicating a possible positive correlation between the two.
+As shown in @fig-gdp-density, the distribution of GDP per capita across countries is highly skewed. Additionally, @fig-life-expectancy demonstrates the relationship between life expectancy and GDP per capita, indicating a possible positive correlation between the two.
 
-The key statistics for the selected indicators, including GDP per capita, life expectancy, and total population, are summarized in **Table @table-key-indicators**.
+The key statistics for the selected indicators, including GDP per capita, life expectancy, and total population, are summarized in @tbl-key-indicators.
+
 
 The data used in this analysis comes from the World Bank Development Indicators dataset [@worldbank]. Additionally, the analysis techniques applied here are informed by concepts discussed in *Data Science for Business* by Provost and Fawcett [@datascience].

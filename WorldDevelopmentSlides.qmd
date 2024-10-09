@@ -1,32 +1,48 @@
 ---
-title: "WorldDevelopmentSlides"
+title: "World Development Slides"
 author: "Max Jiang"
 date: "2024-10-07"
-format: revealjs
-  theme: night  
-  transition: slide  
+format: 
+  revealjs: 
+    theme: night  
+    transition: slide  
 editor: visual
 ---
 
-## 
 
-# Introduction to World Development Indicators
+
+##  Introduction to World Development Indicators
 
 We will explore key socioeconomic indicators such as GDP per capita, life expectancy, and total population.
 
-## 
 
-# Summary of Key Findings
+##  Summary of Key Findings
 
 -   GDP per capita varies significantly across countries.
 -   Life expectancy is positively correlated with GDP per capita.
 
-## 
 
-# Density Plot of GDP Per Capita
+##  Density Plot of GDP Per Capita
+```{r}
+#| echo: true
+#| code-fold: true
+library(tidyverse)
+wdi <- read_csv('/Users/maxjiang/Desktop/QTM350/wdi.csv')
+```
+```{r}
+#| echo: true
+#| code-fold: true
+library(tidyverse)
+indicators <- wdi %>%
+  select(gdp_per_capita = `gdp_per_capita`, 
+         life_expectancy = `life_expectancy`, 
+         total_population = `total_population`)
+```
+
 
 ```{r}
-#| echo: false
+#| echo: true
+#| code-fold: true
 #| fig-cap: "Density Plot of GDP Per Capita"
 ggplot(indicators, aes(x = gdp_per_capita)) +
   geom_density(fill = "lightblue", alpha = 0.7) +
@@ -34,10 +50,11 @@ ggplot(indicators, aes(x = gdp_per_capita)) +
   theme_minimal()
 ```
 
-# Scatter Plot: Life Expectancy vs GDP Per Capita
+##  Scatter Plot: Life Expectancy vs GDP Per Capita
 
 ```{r}
-#| echo: false
+#| echo: true
+#| code-fold: true
 #| fig-cap: "Scatter Plot of Life Expectancy vs GDP Per Capita"
 ggplot(indicators, aes(x = gdp_per_capita, y = life_expectancy)) +
   geom_point(color='purple') +
@@ -45,6 +62,6 @@ ggplot(indicators, aes(x = gdp_per_capita, y = life_expectancy)) +
   theme_minimal()
 ```
 
-# Conclusion
+##  Conclusion
 
 Our analysis highlights disparities in GDP per capita and life expectancy across different countries.
