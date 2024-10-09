@@ -1,12 +1,12 @@
 ---
-title: "World-Development-Project"
+title: "World Development Project"
 author: "Max Jiang"
 date: "2024-10-07"
 bibliography: references.bib
 format: 
   pdf: default
   html: default
-editor: visual
+project: false
 ---
 
 ```{r}
